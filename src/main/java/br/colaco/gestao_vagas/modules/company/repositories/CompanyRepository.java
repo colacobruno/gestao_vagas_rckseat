@@ -9,4 +9,6 @@ import br.colaco.gestao_vagas.modules.company.entities.CompanyEntity;
 
 public interface CompanyRepository extends JpaRepository<CompanyEntity, UUID>{
   Optional<CompanyRepository> findByUsernameOrEmail(String username, String email);
+
+  Optional<CompanyEntity> findByUsername(String username);
 }
