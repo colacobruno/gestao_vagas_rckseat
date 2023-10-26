@@ -20,7 +20,7 @@ public class CreateCandidateUseCase {
           throw new UserFoundException();
         });
       
-        return this.candidateRepository.save(candidateEntity);
+    return this.candidateRepository.save(candidateEntity);
 
   }
 
