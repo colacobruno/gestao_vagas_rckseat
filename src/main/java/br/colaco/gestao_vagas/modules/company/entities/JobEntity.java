@@ -12,11 +12,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "job")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobEntity {
   
   @Id
@@ -25,6 +32,8 @@ public class JobEntity {
 
   private String description;
   private String benefits;
+  
+  @NotBlank(message = "Esse campo é obrigatório")
   private String level;
 
   @ManyToOne()

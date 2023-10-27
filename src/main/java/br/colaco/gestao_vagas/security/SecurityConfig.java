@@ -11,25 +11,24 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 public class SecurityConfig {
-  
+
   @Autowired
   private SecurityFilter securityFilter;
 
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.csrf(csrf -> csrf.disable())
-        .authorizeRequests(auth -> {
-          auth.requestMatchers("/candidate").permitAll()
+        .authorizeHttpRequests(auth -> {
+          auth.requestMatchers("/candidate/").permitAll()
               .requestMatchers("/company/").permitAll()
               .requestMatchers("/auth/company").permitAll();
           auth.anyRequest().authenticated();
-        })
-        .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
+        }).addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
     return http.build();
   }
 
   @Bean
-  public PasswordEncoder passwordEncoder(){
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 }
